@@ -1,0 +1,12 @@
+AuthType Basic
+AuthUserFile /var/www/.htpasswd
+AuthGroupFile /dev/null
+AuthName "Private"
+require valid-user
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /manage
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
